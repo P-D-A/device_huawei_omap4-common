@@ -17,10 +17,10 @@
 # limitations under the License.
 #
 
-FRONTCOMMON_PATH := device/huawei/omap4-common/viva-common
+VIVACOMMON_PATH := device/huawei/omap4-common/viva-common
 
 DEVICE_PACKAGE_OVERLAYS += \
-    $(FRONTCOMMON_PATH)/overlay
+    $(VIVACOMMON_PATH)/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
@@ -28,15 +28,15 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Init scripts
 PRODUCT_COPY_FILES += \
-    $(FRONTCOMMON_PATH)/rootdir/init.front.rc:root/init.front.rc \
-    $(FRONTCOMMON_PATH)/rootdir/init.front.usb.rc:root/init.front.usb.rc \
-    $(FRONTCOMMON_PATH)/rootdir/ueventd.front.rc:root/ueventd.front.rc \
-    $(FRONTCOMMON_PATH)/rootdir/fstab.front:root/fstab.front
+    $(VIVACOMMON_PATH)/rootdir/init.front.rc:root/init.front.rc \
+    $(VIVACOMMON_PATH)/rootdir/init.front.usb.rc:root/init.front.usb.rc \
+    $(VIVACOMMON_PATH)/rootdir/ueventd.front.rc:root/ueventd.front.rc \
+    $(VIVACOMMON_PATH)/rootdir/fstab.front:root/fstab.front
 
 # Media / Audio
 PRODUCT_COPY_FILES += \
-    $(FRONTCOMMON_PATH)/configs/audio/viva_audio_config.conf:system/etc/huawei/audio/viva_audio_config.conf \
-    $(FRONTCOMMON_PATH)/configs/audio/viva_factory_audio_config.conf:system/etc/huawei/audio/viva_factory_audio_config.conf
+    $(VIVACOMMON_PATH)/configs/audio/viva_audio_config.conf:system/etc/huawei/audio/viva_audio_config.conf \
+    $(VIVACOMMON_PATH)/configs/audio/viva_factory_audio_config.conf:system/etc/huawei/audio/viva_factory_audio_config.conf
 
 # GPS
 PRODUCT_PROPERTY_OVERRIDES += \
