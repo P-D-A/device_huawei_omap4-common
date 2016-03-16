@@ -37,7 +37,7 @@ PRODUCT_PACKAGES += \
     gralloc.omap4.so \
     camera.omap4 \
     memtrack.omap4 \
-    power.front \
+    power.omap4 \
     lights.omap4
 
 # init.d
