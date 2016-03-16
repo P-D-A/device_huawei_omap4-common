@@ -19,7 +19,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#define LOG_TAG "Front PowerHAL"
+#define LOG_TAG "HUAWEI OMAP4 PowerHAL"
 #include <utils/Log.h>
 
 #include <hardware/hardware.h>
@@ -35,7 +35,7 @@
 static char screen_off_max_freq[MAX_BUF_SZ] = "700000";
 static char scaling_max_freq[MAX_BUF_SZ] = "1200000";
 
-struct front_power_module {
+struct omap4_power_module {
     struct power_module base;
     pthread_mutex_t lock;
     int boostpulse_fd;
@@ -80,7 +80,7 @@ int sysfs_read(const char *path, char *buf, size_t size)
   return len;
 }
 
-static void front_power_init(struct power_module *module)
+static void omap4_power_init(struct power_module *module)
 {
     sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/timer_rate",
                 "20000");
@@ -96,29 +96,29 @@ static void front_power_init(struct power_module *module)
                 "80000");
 }
 
-static int boostpulse_open(struct front_power_module *front)
+static int boostpulse_open(struct omap4_power_module *omap4)
 {
     char buf[80];
 
-    pthread_mutex_lock(&front->lock);
+    pthread_mutex_lock(&omap4->lock);
 
-    if (front->boostpulse_fd < 0) {
-        front->boostpulse_fd = open(BOOSTPULSE_PATH, O_WRONLY);
+    if (omap4->boostpulse_fd < 0) {
+        omap4->boostpulse_fd = open(BOOSTPULSE_PATH, O_WRONLY);
 
-        if (front->boostpulse_fd < 0) {
-            if (!front->boostpulse_warned) {
+        if (omap4->boostpulse_fd < 0) {
+            if (!omap4->boostpulse_warned) {
                 strerror_r(errno, buf, sizeof(buf));
                 //ALOGE("Error opening %s: %s\n", BOOSTPULSE_PATH, buf);
-                front->boostpulse_warned = 1;
+                omap4->boostpulse_warned = 1;
             }
         }
     }
 
-    pthread_mutex_unlock(&front->lock);
-    return front->boostpulse_fd;
+    pthread_mutex_unlock(&omap4->lock);
+    return omap4->boostpulse_fd;
 }
 
-static void front_power_set_interactive(struct power_module *module, int on)
+static void omap4_power_set_interactive(struct power_module *module, int on)
 {
     int len;
 
@@ -145,17 +145,17 @@ static void front_power_set_interactive(struct power_module *module, int on)
         sysfs_write(SCALINGMAXFREQ_PATH, scaling_max_freq);
 }
 
-static void front_power_hint(struct power_module *module, power_hint_t hint,
+static void omap4_power_hint(struct power_module *module, power_hint_t hint,
                             void *data)
 {
-    struct front_power_module *front = (struct front_power_module *) module;
+    struct omap4_power_module *omap4 = (struct omap4_power_module *) module;
     char buf[80];
     int len;
 
     switch (hint) {
     case POWER_HINT_INTERACTION:
-        if (boostpulse_open(front) >= 0) {
-            len = write(front->boostpulse_fd, "1", 1);
+        if (boostpulse_open(omap4) >= 0) {
+            len = write(omap4->boostpulse_fd, "1", 1);
 
             if (len < 0) {
                 strerror_r(errno, buf, sizeof(buf));
@@ -176,21 +176,21 @@ static struct hw_module_methods_t power_module_methods = {
     .open = NULL,
 };
 
-struct front_power_module HAL_MODULE_INFO_SYM = {
+struct omap4_power_module HAL_MODULE_INFO_SYM = {
     .base = {
         .common = {
             .tag = HARDWARE_MODULE_TAG,
             .module_api_version = POWER_MODULE_API_VERSION_0_2,
             .hal_api_version = HARDWARE_HAL_API_VERSION,
             .id = POWER_HARDWARE_MODULE_ID,
-            .name = "Front Power HAL",
+            .name = "HUAWEI OMAP4 Power HAL",
             .author = "The Android Open Source Project",
             .methods = &power_module_methods,
         },
 
-       .init = front_power_init,
-       .setInteractive = front_power_set_interactive,
-       .powerHint = front_power_hint,
+       .init = omap4_power_init,
+       .setInteractive = omap4_power_set_interactive,
+       .powerHint = omap4_power_hint,
     },
 
     .lock = PTHREAD_MUTEX_INITIALIZER,
