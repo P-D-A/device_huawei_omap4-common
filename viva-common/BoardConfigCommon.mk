@@ -23,7 +23,7 @@ FRONTCOMMON_PATH := device/huawei/omap4-common/viva-common
 TARGET_BOOTLOADER_BOARD_NAME := viva
 
 # Kernel/Ramdisk
-TARGET_KERNEL_CONFIG := front_defconfig
+TARGET_KERNEL_CONFIG := huawei_omap4_defconfig
 TARGET_KERNEL_SOURCE := kernel/huawei/viva
 BOARD_KERNEL_CMDLINE += androidboot.hardware=front
 
