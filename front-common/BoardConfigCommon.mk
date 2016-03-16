@@ -25,6 +25,7 @@ TARGET_BOOTLOADER_BOARD_NAME := front
 # Kernel/Ramdisk
 TARGET_KERNEL_CONFIG := front_defconfig
 TARGET_KERNEL_SOURCE := kernel/huawei/front
+BOARD_KERNEL_CMDLINE += androidboot.hardware=front
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(FRONTCOMMON_PATH)/bluetooth
