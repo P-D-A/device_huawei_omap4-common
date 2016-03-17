@@ -7,7 +7,7 @@ on init
 on boot
     write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/iProduct ${ro.product.model}
-    write /sys/class/android_usb/f_mass_storage/inquiry_string "Huawei  U9500     0100"
+    write /sys/class/android_usb/f_mass_storage/inquiry_string "Huawei  U9200     0100"
 
 on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/enable 0

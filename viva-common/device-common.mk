@@ -28,10 +28,10 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Init scripts
 PRODUCT_COPY_FILES += \
-    $(VIVACOMMON_PATH)/rootdir/init.front.rc:root/init.front.rc \
-    $(VIVACOMMON_PATH)/rootdir/init.front.usb.rc:root/init.front.usb.rc \
-    $(VIVACOMMON_PATH)/rootdir/ueventd.front.rc:root/ueventd.front.rc \
-    $(VIVACOMMON_PATH)/rootdir/fstab.front:root/fstab.front
+    $(VIVACOMMON_PATH)/rootdir/init.viva.rc:root/init.viva.rc \
+    $(VIVACOMMON_PATH)/rootdir/init.viva.usb.rc:root/init.viva.usb.rc \
+    $(VIVACOMMON_PATH)/rootdir/ueventd.viva.rc:root/ueventd.viva.rc \
+    $(VIVACOMMON_PATH)/rootdir/fstab.viva:root/fstab.viva
 
 # Media / Audio
 PRODUCT_COPY_FILES += \

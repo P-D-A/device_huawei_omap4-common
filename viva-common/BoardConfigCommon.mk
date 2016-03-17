@@ -25,11 +25,11 @@ TARGET_BOOTLOADER_BOARD_NAME := viva
 # Kernel/Ramdisk
 TARGET_KERNEL_CONFIG := huawei_omap4_defconfig
 TARGET_KERNEL_SOURCE := kernel/huawei/viva
-BOARD_KERNEL_CMDLINE += androidboot.hardware=front
+BOARD_KERNEL_CMDLINE += androidboot.hardware=viva
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VIVACOMMON_PATH)/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := $(VIVACOMMON_PATH)/bluetooth/vnd_front.txt
+BOARD_BLUEDROID_VENDOR_CONF := $(VIVACOMMON_PATH)/bluetooth/vnd_viva.txt
 
 # fix this up by examining /proc/partitions on a running device. (value * 1024)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
@@ -39,4 +39,4 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 939524096
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 6329188352
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(VIVACOMMON_PATH)/rootdir/fstab.front
+TARGET_RECOVERY_FSTAB := $(VIVACOMMON_PATH)/rootdir/fstab.viva
