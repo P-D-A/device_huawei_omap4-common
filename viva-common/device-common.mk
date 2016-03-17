@@ -40,7 +40,7 @@ PRODUCT_COPY_FILES += \
 
 # GPS
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.hw_gps=47511
+    ro.config.hw_gps=4751
 
 # LCD density
 PRODUCT_PROPERTY_OVERRIDES += \
