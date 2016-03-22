@@ -252,6 +252,11 @@
          in darkness (although they may not be visible in a bright room). -->
     <integer name="config_screenBrightnessDark">14</integer>
 
+    <!-- Amount of time it takes for the light sensor to warm up in milliseconds.
+         For this time after the screen turns on, the Power Manager
+         will not debounce light sensor readings -->
+    <integer name="config_lightSensorWarmupTime">500</integer>
+
     <!-- Flag indicating whether the we should enable the automatic brightness in Settings.
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
     <bool translatable="false" name="config_automatic_brightness_available">true</bool>

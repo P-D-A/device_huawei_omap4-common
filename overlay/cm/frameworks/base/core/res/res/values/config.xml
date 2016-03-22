@@ -25,6 +25,9 @@
          Used to decide if the user can change the colors -->
     <bool translatable="false" name="config_multiColorNotificationLed">true</bool>
 
+    <!-- Light sensor event rate in milliseconds for automatic brightness control. -->
+    <integer name="config_autoBrightnessLightSensorRate">500</integer>
+
     <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
