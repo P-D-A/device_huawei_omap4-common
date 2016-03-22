@@ -1,0 +1,59 @@
+
+project packages/apps/CMFileManager/
+diff --git a/packages/apps/CMFileManager/res/values-ru/plurals.xml b/packages/apps/CMFileManager/res/values-ru/plurals.xml
+index 57141b9..58406d2 100644
+--- a/packages/apps/CMFileManager/res/values-ru/plurals.xml
++++ b/packages/apps/CMFileManager/res/values-ru/plurals.xml
+@@ -18,32 +18,26 @@
+ <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   <plurals name="n_folders">
+     <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> папка</item>
+-    <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> папки</item>
+     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> папок</item>
+   </plurals>
+   <plurals name="n_files">
+     <item quantity="one"><xliff:g id="files">%1$d</xliff:g> файл</item>
+-    <item quantity="few"><xliff:g id="files">%1$d</xliff:g> файла</item>
+     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> файлов</item>
+   </plurals>
+   <plurals name="search_found_items">
+     <item quantity="one">Найден <xliff:g id="count">%d</xliff:g> объект</item>
+-    <item quantity="few">Найдены <xliff:g id="count">%d</xliff:g> объекта</item>
+     <item quantity="other">Найдены <xliff:g id="count">%d</xliff:g> объектов</item>
+   </plurals>
+   <plurals name="selection_folders">
+     <item quantity="one">Выбрана <xliff:g id="folders">%1$d</xliff:g> папка.</item>
+-    <item quantity="few">Выбраны <xliff:g id="folders">%1$d</xliff:g> папки.</item>
+     <item quantity="other">Выбраны <xliff:g id="folders">%1$d</xliff:g> папок.</item>
+   </plurals>
+   <plurals name="selection_files">
+     <item quantity="one">Выбран <xliff:g id="files">%1$d</xliff:g> файл.</item>
+-    <item quantity="few">Выбраны <xliff:g id="files">%1$d</xliff:g> файла.</item>
+     <item quantity="other">Выбраны <xliff:g id="files">%1$d</xliff:g> файлов.</item>
+   </plurals>
+   <plurals name="deleting_n_items">
+     <item quantity="one"><xliff:g id="count">%1$d</xliff:g> элемент будет удалён безвозвратно.</item>
+-    <item quantity="few"><xliff:g id="count">%1$d</xliff:g> элемента будут удалены безвозвратно.</item>
+     <item quantity="other"><xliff:g id="count">%1$d</xliff:g> элементов будут удалены безвозвратно.</item>
+   </plurals>
+ </resources>
+diff --git a/packages/apps/CMFileManager/res/values-ru/strings.xml b/packages/apps/CMFileManager/res/values-ru/strings.xml
+index 0a660c7..025033e 100644
+--- a/packages/apps/CMFileManager/res/values-ru/strings.xml
++++ b/packages/apps/CMFileManager/res/values-ru/strings.xml
+@@ -296,6 +296,7 @@
+   <string name="shortcut_creation_failed_msg">Ошибка создания ярлыка.</string>
+   <string name="pref">Настройки</string>
+   <string name="pref_general">Основные настройки</string>
++  <string name="pref_search">Настройки поиска</string>
+   <string name="pref_storage">Память</string>
+   <string name="pref_editor">Редактор</string>
+   <string name="pref_themes">Темы</string>
+@@ -305,7 +306,6 @@
+   <string name="pref_case_sensitive_sort_summary">Учитывать регистр при навигации или сортировке результатов поиска</string>
+   <string name="pref_filetime_format_mode">Формат даты/времени</string>
+   <string name="pref_disk_usage_warning_level">Уровень предупреждения исп. памяти</string>
+-  <string name="pref_disk_usage_warning_level_summary" formatted="false">Отмечать красным индикатор занятого места, если диск заполнен на <xliff:g id="level">%1$s</xliff:g> %</string>
+   <string name="pref_compute_folder_statistics">Показывать число объектов в папках</string>
+   <string name="pref_compute_folder_statistics_on">Внимание! Анализ содержимого папок может увеличить время обработки их свойств</string>
+   <string name="pref_display_thumbs">Показывать эскизы</string>
