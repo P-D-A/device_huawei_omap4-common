@@ -96,7 +96,8 @@ WIFI_DRIVER_FW_PATH_AP           := "/vendor/firmware/fw_bcmdhd_apsta.bin"
 
 # Enable dex-preoptimization to speed up first boot sequence
 WITH_DEXPREOPT := true
-WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+#WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+WITH_DEXPREOPT_PIC := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
