@@ -6,7 +6,7 @@
 
 # INIT mount points
 /dev/block/platform/omap/omap_hsmmc.1/by-name/system      /system      ext4  ro                                                        wait
-/dev/block/platform/omap/omap_hsmmc.0/by-name/misc        /misc        ext4  noatime,nosuid,nodev,nomblk_io_submit                     wait
+/dev/block/platform/omap/omap_hsmmc.1/by-name/misc        /misc        ext4  noatime,nosuid,nodev,nomblk_io_submit                     wait
 /dev/block/platform/omap/omap_hsmmc.1/by-name/cust        /cust        ext4  rw,noatime,nosuid,nodev,nomblk_io_submit,errors=panic     wait,check
 /dev/block/platform/omap/omap_hsmmc.1/by-name/cache       /cache       ext4  rw,noatime,nosuid,nodev,nomblk_io_submit,errors=panic     wait,check
 /dev/block/platform/omap/omap_hsmmc.1/by-name/cache       /cache       f2fs  rw,noatime,nosuid,nodev,inline_data,inline_xattr,discard  wait,check

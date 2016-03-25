@@ -51,3 +51,25 @@
 # Hardware tunables
 /sys/devices/platform/omapdss/manager0/cpr_coef       -- u:object_r:sysfs_hardware:s0
 /sys/devices/platform/omapdss/manager0/cpr_enable     -- u:object_r:sysfs_hardware:s0
+
+# TEE / SMC
+/misc/smc(/.*)?						u:object_r:tee:s0
+/dev/tf_ctrl						u:object_r:tee_device:s0
+/system/vendor/bin/misc-fs-setup.sh			u:object_r:recovery_exec:s0
+/system/bin/smc_pa_ctrl					u:object_r:smc_pa_ctrl_exec:s0
+
+# Tuna & generic setup
+/system/vendor/bin/tunasetup.sh				u:object_r:recovery_exec:s0
+/system/bin/setup_fs					u:object_r:fs_setup_exec:s0
+
+# Block devices
+/dev/block/mmcblk0					u:object_r:root_block_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/boot	u:object_r:boot_block_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/recovery	u:object_r:recovery_block_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/cache	u:object_r:cache_block_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/system	u:object_r:system_block_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/userdata	u:object_r:userdata_block_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/modemimage	u:object_r:radio_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/modemnvm1	u:object_r:radio_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/modemnvm2	u:object_r:radio_device:s0
+/dev/block/platform/omap/omap_hsmmc.1/by-name/misc	u:object_r:tee_block_device:s0

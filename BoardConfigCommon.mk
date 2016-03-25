@@ -144,6 +144,7 @@ BOARD_SEPOLICY_UNION += \
     domain.te \
     file_contexts \
     file.te \
+    fs_setup.te \
     genfs_contexts \
     gpsd.te \
     imcdownload_app.te \
@@ -153,7 +154,10 @@ BOARD_SEPOLICY_UNION += \
     mediaserver.te \
     netd.te \
     postinit.te \
+    property.te \
+    property_contexts \
     pvrsrvinit.te \
+    recovery.te \
     rild.te \
     servicemanager.te \
     setup_fs.te \
@@ -163,5 +167,6 @@ BOARD_SEPOLICY_UNION += \
     system_server.te \
     uim_sysfs.te \
     untrusted_app.te \
+    vold.te \
     wpa_supplicant.te \
     zygote.te

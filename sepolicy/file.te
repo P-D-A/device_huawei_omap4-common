@@ -5,3 +5,5 @@ type firmware_ducati, file_type;
 
 # hardware tunables
 type sysfs_hardware, fs_type, sysfs_type;
+
+type radio_efs_file, file_type, mlstrustedobject;

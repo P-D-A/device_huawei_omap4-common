@@ -1,2 +1,5 @@
 # Device types
 type rfkill_device, dev_type;
+
+type efs_block_device, dev_type;
+type tee_block_device, dev_type;
