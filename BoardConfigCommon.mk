@@ -152,6 +152,7 @@ BOARD_SEPOLICY_UNION += \
     kernel.te \
     mediaserver.te \
     netd.te \
+    platform_app.te \
     postinit.te \
     pvrsrvinit.te \
     rild.te \
