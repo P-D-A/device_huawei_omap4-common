@@ -53,7 +53,7 @@
 /sys/devices/platform/omapdss/manager0/cpr_enable     -- u:object_r:sysfs_hardware:s0
 
 # TEE / SMC
-/misc/smc(/.*)?						u:object_r:tee:s0
+/misc/smc(/.*)?						u:object_r:tee_file:s0
 /dev/tf_ctrl						u:object_r:tee_device:s0
 /system/vendor/bin/misc-fs-setup.sh			u:object_r:recovery_exec:s0
 /system/bin/smc_pa_ctrl					u:object_r:smc_pa_ctrl_exec:s0
