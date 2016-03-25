@@ -97,6 +97,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# SMC
+PRODUCT_COPY_FILES += \
+    $(DEVCOMMON_PATH)/utilities/misc-fs-setup.sh:system/vendor/bin/misc-fs-setup.sh
+
 # Key maps
 PRODUCT_COPY_FILES += \
     $(DEVCOMMON_PATH)/configs/usr/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl \
