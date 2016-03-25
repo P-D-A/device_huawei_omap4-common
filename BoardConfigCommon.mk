@@ -165,6 +165,7 @@ BOARD_SEPOLICY_UNION += \
     smc_pa.te \
     system_app.te \
     system_server.te \
+    tee.te \
     uim_sysfs.te \
     untrusted_app.te \
     vold.te \
