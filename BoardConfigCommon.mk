@@ -39,7 +39,8 @@ ARCH_ARM_HAVE_VFP := true
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/../../linaro-4.9/bin/
+# GCC 5.2 sources: https://github.com/arter97/arm-linux-androideabi-5.2.git
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/../../arm-linux-androideabi-5.2/bin/
 #BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 # For RIL
