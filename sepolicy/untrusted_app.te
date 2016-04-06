@@ -6,6 +6,7 @@ allow untrusted_app system_app_data_file:dir getattr;
 allow untrusted_app unlabeled:dir search;
 
 allow untrusted_app akmd8975_exec:file { getattr read open };
+allow untrusted_app atcmdserver_exec:file { getattr read open };
 allow untrusted_app bootanim_exec:file { getattr read open };
 allow untrusted_app clatd_exec:file { getattr read open };
 allow untrusted_app debuggerd_exec:file { getattr read open };

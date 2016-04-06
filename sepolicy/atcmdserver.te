@@ -1,0 +1,9 @@
+type atcmdserver, domain;
+type atcmdserver_exec, exec_type, file_type;
+type atcmdserver_file, file_type;
+
+init_daemon_domain(atcmdserver)
+
+allow atcmdserver radio_device:chr_file { write ioctl open };
+allow atcmdserver self:capability dac_override;
+allow atcmdserver self:process execmem;

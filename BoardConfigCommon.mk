@@ -139,6 +139,7 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     akmd8975.te \
+    atcmdserver.te \
     bluetooth.te \
     debuggerd.te \
     device.te \

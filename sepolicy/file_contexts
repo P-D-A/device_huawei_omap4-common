@@ -22,6 +22,8 @@
 /dev/audience_es305             u:object_r:audio_device:s0
 /dev/ttyO0                      u:object_r:audio_device:s0
 
+/dev/nve0                       u:object_r:radio_device:s0
+
 # GPS
 /dev/ttyO3                      u:object_r:gps_device:s0
 /data/gps/*                     u:object_r:gps_data_file:s0
@@ -41,6 +43,7 @@
 /system/bin/smc_pa_ctrl         u:object_r:smc_pa_exec:s0
 /system/bin/setup_fs            u:object_r:setup_fs_exec:s0
 /system/bin/akmd8975            u:object_r:akmd8975_exec:s0
+/system/bin/atcmdserver         u:object_r:atcmdserver_exec:s0
 
 /system/bin/IMCdownload_App     u:object_r:imcdownload_app_exec:s0
 /system/bin/Injection_nv        u:object_r:injection_nv_exec:s0
