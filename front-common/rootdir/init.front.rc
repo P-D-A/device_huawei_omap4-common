@@ -61,12 +61,12 @@ on post-fs-data
     mkdir /data/share 0775 media_rw media_rw
     chown media_rw media_rw /data/share
 
-    setprop vold.post_fs_data_done 1
-
     chown system system /sys/class/android_usb/f_mass_storage/suitestate
     chmod 0660 /sys/class/android_usb/f_mass_storage/suitestate
     chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
     chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
+
+    setprop vold.post_fs_data_done 1
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
