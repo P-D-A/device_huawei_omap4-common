@@ -156,9 +156,9 @@ ADDITIONAL_BUILD_PROPERTIES += \
     config.disable_atlas=true \
     dalvik.vm.dex2oat-flags=--no-watch-dog
 
-# Use 3 threads max for dex2oat
+# Use 4 threads max for dex2oat
 ADDITIONAL_BUILD_PROPERTIES += \
-    ro.sys.fw.dex2oat_thread_count=3
+    ro.sys.fw.dex2oat_thread_count=4
 
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.com.android.dataroaming=false
