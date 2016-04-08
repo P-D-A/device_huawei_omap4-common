@@ -1,0 +1,45 @@
+From 355118300712722b82dac13059879e7249de8620 Mon Sep 17 00:00:00 2001
+From: ywen <ywen@codeaurora.org>
+Date: Mon, 15 Feb 2016 16:09:40 +0800
+Subject: [PATCH] Performance Optimization: Align texture dirty rect
+
+Align x offset and width to 32, y offset and height to 4.
+It improves the font texture upload performance.
+
+Change-Id: I967eeed90658f2ce1eb08cb2740d5dc34c72f40b
+(cherry picked from commit 93e2a44e7fdb51e87e1593ed11a34688cf19af3a)
+Signed-off-by: Zdrowy Gosciu <ZdrowyGosciu+GITHUB@gmail.com>
+---
+
+project frameworks/base/
+diff --git a/frameworks/base/libs/hwui/font/CacheTexture.cpp b/frameworks/base/libs/hwui/font/CacheTexture.cpp
+index 24ffb80..4a56de9 100644
+--- a/frameworks/base/libs/hwui/font/CacheTexture.cpp
++++ b/frameworks/base/libs/hwui/font/CacheTexture.cpp
+@@ -206,15 +206,21 @@
+ bool CacheTexture::upload() {
+     const Rect& dirtyRect = mDirtyRect;
+ 
+-    uint32_t x = mHasUnpackRowLength ? dirtyRect.left : 0;
+-    uint32_t y = dirtyRect.top;
+-    uint32_t width = mHasUnpackRowLength ? dirtyRect.getWidth() : mWidth;
+-    uint32_t height = dirtyRect.getHeight();
++    // align the x direction to 32 and y direction to 4 for better performance
++    uint32_t x = (((uint32_t)dirtyRect.left) & (~0x1F));
++    uint32_t y = (((uint32_t)dirtyRect.top) & (~0x3));
++    uint32_t r = ((((uint32_t)dirtyRect.right) + 0x1F) & (~0x1F));
++    uint32_t b = ((((uint32_t)dirtyRect.bottom) + 0x3) & (~0x3));
++    uint32_t width = (r > getWidth() ? getWidth() : r) - x;
++    uint32_t height = (b > getHeight() ? getHeight() : b) - y;
+ 
+     // The unpack row length only needs to be specified when a new
+     // texture is bound
+     if (mHasUnpackRowLength) {
+-        glPixelStorei(GL_UNPACK_ROW_LENGTH, mWidth);
++        glPixelStorei(GL_UNPACK_ROW_LENGTH, getWidth());
++    } else {
++        x = 0;
++        width = getWidth();
+     }
+ 
+     mTexture->upload(x, y, width, height);
