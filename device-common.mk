@@ -97,6 +97,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# Google Android Sync Bookmarks adapter
+PRODUCT_PACKAGES += \
+    ChromeBookmarksSyncAdapter
+
 # Key maps
 PRODUCT_COPY_FILES += \
     $(DEVCOMMON_PATH)/configs/usr/omap4-keypad.kl:system/usr/keylayout/omap4-keypad.kl \
