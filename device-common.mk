@@ -248,4 +248,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.def.agps.mode=2
 
+# Enable force GPU rendering
+# Fix color glitches
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.ui.hw=true
+
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
