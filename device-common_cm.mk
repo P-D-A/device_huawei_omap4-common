@@ -20,6 +20,10 @@ DEVCOMMON_PATH := device/huawei/omap4-common
 PRODUCT_PACKAGES += \
     Snap
 
+# Snap Camera. Disable qcom features
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera.qcom.misc.disable=1
+
 # Media / Audio
 PRODUCT_COPY_FILES += \
     $(DEVCOMMON_PATH)/configs/media/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
