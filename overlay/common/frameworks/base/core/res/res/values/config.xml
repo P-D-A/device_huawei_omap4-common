@@ -177,6 +177,10 @@
     <!-- Boolean indicating whether the wifi chipset has background scan support -->
     <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
 
+    <!-- Integer indicating amount of time failed networks areblacklisted for the purpose
+         of network switching in milliseconds -->
+    <integer translatable="false" name="config_wifi_network_switching_blacklist_time">0</integer>
+
     <!-- Enables or disables fading edges when marquee is enabled in TextView. -->
     <bool translatable="false" name="config_ui_enableFadingMarquee">false</bool>
 
