@@ -23,6 +23,9 @@ PRODUCT_PACKAGES += \
 # Snap Camera. Disable qcom features
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.qcom.misc.disable=1
+# set sdCard as default storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.env.camera.saveinsd=true
 
 # Media / Audio
 PRODUCT_COPY_FILES += \
