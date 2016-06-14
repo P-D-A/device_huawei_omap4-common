@@ -20,9 +20,7 @@ DEVCOMMON_PATH := device/huawei/omap4-common
 PRODUCT_PACKAGES += \
     Snap
 
-# Snap Camera. Disable qcom features
-PRODUCT_PROPERTY_OVERRIDES += \
-    camera.qcom.misc.disable=1
+# Snap Camera
 # set sdCard as default storage
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.env.camera.saveinsd=true
