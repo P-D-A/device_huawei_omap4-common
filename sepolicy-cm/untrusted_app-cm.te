@@ -1,0 +1,1 @@
+allow untrusted_app recovery_cache_file:dir getattr;
