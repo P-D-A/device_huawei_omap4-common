@@ -41,8 +41,9 @@ on init
     mkdir /modem/nvm2 0775 radio radio
 
     # KSM
+    write /sys/kernel/mm/ksm/deferred_timer 1
     write /sys/kernel/mm/ksm/pages_to_scan 100
-    write /sys/kernel/mm/ksm/sleep_millisecs 500
+    write /sys/kernel/mm/ksm/sleep_millisecs 2000
 
     setprop ro.hwboottype boot_android
 
