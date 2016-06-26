@@ -232,10 +232,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vold.umsdirtyratio=50
 
-# FM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.fm_type=libbcmfm_if
-
 # OTG
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.isUsbOtgEnabled=true
