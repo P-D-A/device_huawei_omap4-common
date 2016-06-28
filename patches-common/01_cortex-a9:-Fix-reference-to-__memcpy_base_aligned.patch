@@ -1,0 +1,21 @@
+cortex-a9: Fix reference to __memcpy_base_aligned.
+
+With a different memcpy, __memcpy_base_aligned ceased to exist.
+Instead, point to the name defined by whatever includes memcpy_base.S
+
+http://review.cyanogenmod.org/#/c/150756/
+
+project bionic/
+diff --git a/bionic/libc/arch-arm/cortex-a9/bionic/memcpy_base.S b/bionic/libc/arch-arm/cortex-a9/bionic/memcpy_base.S
+index 6ab5a69..966b9b3 100644
+--- a/bionic/libc/arch-arm/cortex-a9/bionic/memcpy_base.S
++++ b/bionic/libc/arch-arm/cortex-a9/bionic/memcpy_base.S
+@@ -44,7 +44,7 @@ ENTRY_PRIVATE(MEMCPY_BASE)
+         /* check if buffers are aligned. If so, run arm-only version */
+         eor         r3, r0, r1
+         ands        r3, r3, #0x3
+-        beq         __memcpy_base_aligned
++        beq         MEMCPY_BASE_ALIGNED
+ 
+         /* Check the upper size limit for Neon unaligned memory access in memcpy */
+         cmp         r2, #224
