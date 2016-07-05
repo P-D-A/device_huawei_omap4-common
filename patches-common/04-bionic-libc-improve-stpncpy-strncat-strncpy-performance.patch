@@ -1,0 +1,112 @@
+From ed4dff8c6853a03ca0ea4760f20251a40f375ea9 Mon Sep 17 00:00:00 2001
+From: Jake Weinstein <xboxlover360@gmail.com>
+Date: Sun, 6 Sep 2015 15:29:36 +0000
+Subject: [PATCH 3/4] libc: improve stpncpy/strncat/strncpy performance
+
+* Use strnlen/memcpy/memset, which we have very fast assembly routines
+  for.
+
+Based on glibc commits from Wilco Dijkstra at ARM
+
+Change-Id: Icc4649691769e6e200d2f8f32cf0c3804effa4b4
+---
+ libc/upstream-openbsd/lib/libc/string/stpncpy.c | 22 ++++++----------------
+ libc/upstream-openbsd/lib/libc/string/strncat.c | 23 ++++++++++-------------
+ libc/upstream-openbsd/lib/libc/string/strncpy.c | 18 ++++--------------
+ 3 files changed, 20 insertions(+), 43 deletions(-)
+
+project bionic/
+diff --git a/bionic/libc/upstream-openbsd/lib/libc/string/stpncpy.c b/bionic/libc/upstream-openbsd/lib/libc/string/stpncpy.c
+index c7c2a57..dc46dbf 100644
+--- a/bionic/libc/upstream-openbsd/lib/libc/string/stpncpy.c
++++ b/bionic/libc/upstream-openbsd/lib/libc/string/stpncpy.c
+@@ -37,20 +37,10 @@
+ char *
+ stpncpy(char *dst, const char *src, size_t n)
+ {
+-	if (n != 0) {
+-		char *d = dst;
+-		const char *s = src;
+-
+-		dst = &dst[n];
+-		do {
+-			if ((*d++ = *s++) == 0) {
+-				dst = d - 1;
+-				/* NUL pad the remaining n-1 bytes */
+-				while (--n != 0)
+-					*d++ = 0;
+-				break;
+-			}
+-		} while (--n != 0);
+-	}
+-	return (dst);
++  size_t size = strnlen (src, n);
++  memcpy (dst, src, size);
++  dst += size;
++  if (size == n)
++    return dst;
++  return memset (dst, '\0', n - size);
+ }
+diff --git a/bionic/libc/upstream-openbsd/lib/libc/string/strncat.c b/bionic/libc/upstream-openbsd/lib/libc/string/strncat.c
+index c4df4f2..e886fea 100644
+--- a/bionic/libc/upstream-openbsd/lib/libc/string/strncat.c
++++ b/bionic/libc/upstream-openbsd/lib/libc/string/strncat.c
+@@ -40,18 +40,15 @@
+ char *
+ strncat(char *dst, const char *src, size_t n)
+ {
+-	if (n != 0) {
+-		char *d = dst;
+-		const char *s = src;
++  char *d = dst;
+ 
+-		while (*d != 0)
+-			d++;
+-		do {
+-			if ((*d = *s++) == 0)
+-				break;
+-			d++;
+-		} while (--n != 0);
+-		*d = 0;
+-	}
+-	return (dst);
++  /* Find the end of dst.  */
++  dst += strlen (dst);
++
++  size_t ss = strnlen (src, n);
++
++  dst[ss] = '\0';
++  memcpy (dst, src, ss);
++
++  return d;
+ }
+diff --git a/bionic/libc/upstream-openbsd/lib/libc/string/strncpy.c b/bionic/libc/upstream-openbsd/lib/libc/string/strncpy.c
+index 5003a19..9bbf5d2 100644
+--- a/bionic/libc/upstream-openbsd/lib/libc/string/strncpy.c
++++ b/bionic/libc/upstream-openbsd/lib/libc/string/strncpy.c
+@@ -41,18 +41,8 @@
+ char *
+ strncpy(char *dst, const char *src, size_t n)
+ {
+-	if (n != 0) {
+-		char *d = dst;
+-		const char *s = src;
+-
+-		do {
+-			if ((*d++ = *s++) == 0) {
+-				/* NUL pad the remaining n-1 bytes */
+-				while (--n != 0)
+-					*d++ = 0;
+-				break;
+-			}
+-		} while (--n != 0);
+-	}
+-	return (dst);
++  size_t size = strnlen (src, n);
++  if (size != n)
++    memset (dst + size, '\0', n - size);
++  return memcpy (dst, src, size);
+ }
+-- 
+2.9.0
+

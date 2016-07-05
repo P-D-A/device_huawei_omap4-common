@@ -1,0 +1,71 @@
+From 8e545dedddc7656d1d6e1626b52c6e2cd3d486b1 Mon Sep 17 00:00:00 2001
+From: Chris Sarbora <sarbs@cyngn.com>
+Date: Tue, 27 Oct 2015 11:12:40 -0700
+Subject: [PATCH 4/4] WIP managed binders
+
+Change-Id: If284d320c16d4cb799225001d16b0d6c792e5320
+---
+ libc/kernel/uapi/linux/binder.h   |  1 +
+ libc/kernel/uapi/linux/ion_test.h | 38 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+ create mode 100644 libc/kernel/uapi/linux/ion_test.h
+
+project bionic/
+diff --git a/bionic/libc/kernel/uapi/linux/binder.h b/bionic/libc/kernel/uapi/linux/binder.h
+index 02101ab..0ca3a91 100644
+--- a/bionic/libc/kernel/uapi/linux/binder.h
++++ b/bionic/libc/kernel/uapi/linux/binder.h
+@@ -186,5 +186,6 @@ enum binder_driver_command_protocol {
+  BC_CLEAR_DEATH_NOTIFICATION = _IOW('c', 15, struct binder_handle_cookie),
+  BC_DEAD_BINDER_DONE = _IOW('c', 16, binder_uintptr_t),
+ /* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
++ BC_DIE_BINDER = _IOW('c', 17, void *),
+ };
+ #endif
+diff --git a/bionic/libc/kernel/uapi/linux/ion_test.h b/bionic/libc/kernel/uapi/linux/ion_test.h
+new file mode 100644
+index 0000000..6f3e2a7
+--- /dev/null
++++ b/bionic/libc/kernel/uapi/linux/ion_test.h
+@@ -0,0 +1,38 @@
++/****************************************************************************
++ ****************************************************************************
++ ***
++ ***   This header was automatically generated from a Linux kernel header
++ ***   of the same name, to make information necessary for userspace to
++ ***   call into the kernel available to libc.  It contains only constants,
++ ***   structures, and macros generated from the original header, and thus,
++ ***   contains no copyrightable information.
++ ***
++ ***   To edit the content of this header, modify the corresponding
++ ***   source file (e.g. under external/kernel-headers/original/) then
++ ***   run bionic/libc/kernel/tools/update_all.py
++ ***
++ ***   Any manual change here will be lost the next time this script will
++ ***   be run. You've been warned!
++ ***
++ ****************************************************************************
++ ****************************************************************************/
++#ifndef _UAPI_LINUX_ION_TEST_H
++#define _UAPI_LINUX_ION_TEST_H
++#include <linux/ioctl.h>
++#include <linux/types.h>
++/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
++struct ion_test_rw_data {
++ __u64 ptr;
++ __u64 offset;
++ __u64 size;
++/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
++ int write;
++ int __padding;
++};
++#define ION_IOC_MAGIC 'I'
++/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
++#define ION_IOC_TEST_SET_FD   _IO(ION_IOC_MAGIC, 0xf0)
++#define ION_IOC_TEST_DMA_MAPPING   _IOW(ION_IOC_MAGIC, 0xf1, struct ion_test_rw_data)
++#define ION_IOC_TEST_KERNEL_MAPPING   _IOW(ION_IOC_MAGIC, 0xf2, struct ion_test_rw_data)
++#endif
++/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+-- 
+2.9.0
+

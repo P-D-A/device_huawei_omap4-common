@@ -1,0 +1,46 @@
+From 25513316ce7d4b414c30e3beac64d6fd3d1e50e3 Mon Sep 17 00:00:00 2001
+From: Kyle Repinski <repinski23@gmail.com>
+Date: Thu, 30 Apr 2015 02:13:56 -0500
+Subject: [PATCH 2/4] Speed-up ARM memcmp by leveraging NEON.
+
+Because NEON_UNALIGNED_ACCESS has never been defined, it has gone unused.
+This change changes it to check for __ARM_FEATURE_UNALIGNED, defined by GCC.
+This has improved speed by roughly 34% on my testcases.
+
+Also, memcmp checks if HAVE_32_BYTE_CACHE_LINE is defined and adjusts for it;
+this is true for Cortex-A9, so define it in cortex-a9 makefile.
+
+Change-Id: I3c76ce7fa2796872e0171d5502b0ebd6e2893339
+---
+ libc/arch-arm/bionic/memcmp.S        | 2 +-
+ libc/arch-arm/cortex-a9/cortex-a9.mk | 3 +++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+project bionic/
+diff --git a/bionic/libc/arch-arm/bionic/memcmp.S b/bionic/libc/arch-arm/bionic/memcmp.S
+index 6643d55..886d899 100644
+--- a/bionic/libc/arch-arm/bionic/memcmp.S
++++ b/bionic/libc/arch-arm/bionic/memcmp.S
+@@ -63,7 +63,7 @@ ENTRY(memcmp)
+  * Neon optimization
+  * Comparing 32 bytes at a time
+  */
+-#if defined(__ARM_NEON__) && defined(NEON_UNALIGNED_ACCESS)
++#if defined(__ARM_NEON__) && defined(__ARM_FEATURE_UNALIGNED)
+         subs        r2, r2, #32
+         blo         3f
+ 
+diff --git a/bionic/libc/arch-arm/cortex-a9/cortex-a9.mk b/bionic/libc/arch-arm/cortex-a9/cortex-a9.mk
+index 5805ea8..af1e7cf 100644
+--- a/bionic/libc/arch-arm/cortex-a9/cortex-a9.mk
++++ b/bionic/libc/arch-arm/cortex-a9/cortex-a9.mk
+@@ -10,3 +10,6 @@ libc_bionic_src_files_arm += \
+     arch-arm/cortex-a9/bionic/__strcpy_chk.S \
+     arch-arm/cortex-a9/bionic/strlen.S \
+     bionic/memmove.c \
++
++libc_common_cflags_arm += \
++    -DHAVE_32_BYTE_CACHE_LINE
+-- 
+2.9.0
+
